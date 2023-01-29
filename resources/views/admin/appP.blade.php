@@ -12,6 +12,15 @@
 						
 						<div class="modal-body">
 							<div class="form-group">
+								<label><b>Si cuenta con un boleto físico, ingrese el folio:</b></label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+									</div>
+									<input id="folio_even" name="folio_even" v-model="folio_even" Class="form-control" type="text"/>
+								</div>
+							</div>
+							<div class="form-group">
 								<label>Nombre <span class="text-danger">*</span></label>
 								<input  v-model="nombre"   Class="form-control" type="text"/>
 							</div>

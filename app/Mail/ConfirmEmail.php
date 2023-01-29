@@ -11,7 +11,7 @@ class ConfirmEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $subject = 'Confirmación Participante AVANCEYA';
-    public $datosE;
+    public $datos;
     /**
      * Create a new message instance.
      *
@@ -20,7 +20,7 @@ class ConfirmEmail extends Mailable
     public function __construct($datos)
     {
         
-        $this->datosE = $datos;
+        $this->datos = $datos;
 
     }
 
@@ -31,6 +31,7 @@ class ConfirmEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emailconfir',compact('$datosE'));
+        $datosE = $this->datos;
+        return $this->view('emailconfir',compact('datosE'));
     }
 }

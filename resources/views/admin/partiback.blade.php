@@ -18,7 +18,7 @@
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i class="fa fa-plus"></i> Agregar Participante</a>
+							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave" v-on:click="reset_all()"><i class="fa fa-plus"></i> Agregar Participante</a>
 						</div>
 					</div>
 				</div>
@@ -164,6 +164,7 @@
 				enviconfir:null,
 				informal:null,
 				arraydatos:[],
+				folio_even: null,
 				
 
 			},
@@ -196,9 +197,29 @@
 					tipoins:this.tipins,
 					informal:this.informal,
 					nombreins:this.nombreins,
+					folio_even: this.folio_even,
                 };
 
-					
+				if((this.nombre == null || this.nombre == '') ||
+					(this.apep == null || this.apep == '') ||
+					(this.apem == null || this.apem == '') ||
+					(this.email == null || this.email == '') ||
+					(this.tel == null || this.tel == '') ||
+					(this.tipins == null || this.tipins == '') ||
+					(this.nombreins == null || this.nombreins == '')
+				){
+					return Swal.fire({
+                        icon: 'error',
+                        html: `<p> ALGUNOS CAMPOS SON OBLIGATORIOS </p>`,
+                        confirmButtonText: 'ACEPTAR',
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        allowEnterKey: false,
+                    });
+				}
+
+					// http://127.0.0.1:8000/guardarb
+					// http://sistema.avanceya.com/Evento/public/guardarb
 					axios.post('http://sistema.avanceya.com/Evento/public/guardarb', arraydatos).then((response)=> {
 						
 						if (response.data.result) {
@@ -226,6 +247,8 @@
 					let arraydatos = {
                     array_dat:id
                 };
+				// http://127.0.0.1:8000/enviaremail
+				// http://sistema.avanceya.com/Evento/public/enviaremail
 					axios.post('http://sistema.avanceya.com/Evento/public/enviaremail', arraydatos).then((response)=> {
 						
 						if (response.data.result) {
@@ -245,7 +268,8 @@
                 };
 
 				if(this.banderaid != null){
-					
+					// http://sistema.avanceya.com/Evento/public/eliminar
+					// http://127.0.0.1:8000/eliminar
 					axios.post('http://sistema.avanceya.com/Evento/public/eliminar', arraydatos).then((response)=> {
 						console.log("aqui estoy 1");
 						if (response.data.result) {
@@ -266,6 +290,8 @@
 				},
 				editarusuario: function (id) {
 					this.reservars();
+					// http://127.0.0.1:8000/modificarp
+					// http://sistema.avanceya.com/Evento/public/modificarp
 					axios.get('http://sistema.avanceya.com/Evento/public/modificarp/'+ id).then((response)=> {
 						
 						if (response.data) {
@@ -295,6 +321,24 @@
 
 				},editarenvusuario: function () {
 
+					if((this.nombre == null || this.nombre == '') ||
+					(this.apep == null || this.apep == '') ||
+					(this.apem == null || this.apem == '') ||
+					(this.email == null || this.email == '') ||
+					(this.tel == null || this.tel == '') ||
+					(this.tipins == null || this.tipins == '') ||
+					(this.nombreins == null || this.nombreins == '')
+				){
+					return Swal.fire({
+                        icon: 'error',
+                        html: `<p> ALGUNOS CAMPOS SON OBLIGATORIOS </p>`,
+                        confirmButtonText: 'ACEPTAR',
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        allowEnterKey: false,
+                    });
+				}
+
 					let arraydatos = {
                     array_dat:this.banderaid,
 					enombre:this.nombre,
@@ -316,9 +360,10 @@
                 };
 
 				if(this.banderaid != null){
-					
+					// http://sistema.avanceya.com/Evento/public/actualizaparti
+					// http://127.0.0.1:8000/actualizaparti
 					axios.post('http://sistema.avanceya.com/Evento/public/actualizaparti', arraydatos).then((response)=> {
-						console.log("aqui estoy 1");
+						
 						if (response.data.result) {
 							
 							Swal.fire('EL Participante se Actualizo');
@@ -355,6 +400,10 @@
 					this.Nestudio=null;
 					this.Onomas=null;
 					this.enviconfir=null;
+					this.folio_even = null;
+				},
+				reset_all:function(){ 
+					this.reservars();
 				}
 			}
 			})
