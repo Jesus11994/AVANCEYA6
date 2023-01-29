@@ -198,7 +198,7 @@ class backendevento extends Controller
 
     }
 
-
+    //holis
      $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
      $password = "";
      //Reconstruimos la contraseña segun la longitud que se quiera
