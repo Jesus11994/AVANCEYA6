@@ -34,7 +34,7 @@ Route::get('/register/verify/{code}', 'registrocontroller@confirmemail')->name('
 Route::get('/lista', 'backendevento@listar')->name('back.listar');
 Route::get('/confirmacion', 'backendevento@listarconfirma')->name('back.confirm');
 Route::get('/dashboard', 'backendevento@index')->name('back.index');
-Route::post('/guardarb', 'backendevento@store')->name('back.guardar');
+Route::post('/guardarb', 'backendevento@store')->name('back.guardar');//-----
 Route::post('/eliminar', 'backendevento@eliminarpart')->name('back.delet');
 Route::get('/modificarp/{id}', 'backendevento@modificarp')->name('back.modific');
 Route::post('/actualizaparti', 'backendevento@guarmodi')->name('back.guarmodi');
