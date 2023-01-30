@@ -77,8 +77,10 @@ class backendevento extends Controller
     public function  busquedaparti()
     {
 
-        $totalparti = Musuario::count();
-        $listac = Musuario::where('confirmflag', 1)->get();
+        $totalparti = Musuario::where('IdEvento',2)->count();
+        $listac = Musuario::where('confirmflag', 1)
+        ->where('IdEvento',2)
+        ->get();
         $totalconfirm = $listac->count();
 
         
@@ -95,6 +97,7 @@ class backendevento extends Controller
 
       
         $Busqueda = Musuario::Where('telefono_Cuno',"$frm_tel")
+        ->where('IdEvento',2)
         ->first();
       
         
@@ -102,12 +105,14 @@ class backendevento extends Controller
         if ($frm_usr != null ){
            
             $Busqueda = Musuario::where('login_C',"LIKE","%$frm_usr%")
+            ->where('IdEvento',2)
             ->first();
         }
 
       
         if ($frm_nombre!= null && $frm_nombre!= null){
             $Busqueda = Musuario::where ('nombre_C','like',"%$frm_nombre%")
+            ->where('IdEvento',2)
             ->where ('apep_C','like',"%$frm_apep%")
             ->orwhere('apem_C','like',"%$frm_apem$%")->first();
         }
@@ -131,6 +136,7 @@ class backendevento extends Controller
         ->select('*')
         ->join('cat_nivel', 'cat_nivel.id_nivel', '=', 'participante.nivel')
         ->join('cat_institucion', 'cat_institucion.id_institu', '=', 'participante.id_tipoIns')
+        ->where('IdEvento',2)
         ->orderBy('id_usuario', 'ASC')
         ->get();
     
@@ -143,6 +149,7 @@ class backendevento extends Controller
         $Liscat = DB::table('participante')
         ->select('*')
         ->join('evento_asistencia', 'evento_asistencia.id_cliente', '=', 'participante.id_usuario')
+        ->where('IdEvento',2)
         ->orderBy('id_usuario', 'ASC')
         ->get();
         
@@ -156,6 +163,7 @@ class backendevento extends Controller
         ->select('*')
         ->join('cat_nivel', 'cat_nivel.id_nivel', '=', 'participante.nivel')
         ->join('cat_institucion', 'cat_institucion.id_institu', '=', 'participante.id_tipoIns')
+        ->where('IdEvento',2)
         ->orderBy('id_usuario', 'ASC')
         ->get();
     
