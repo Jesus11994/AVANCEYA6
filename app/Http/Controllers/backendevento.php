@@ -49,7 +49,7 @@ class backendevento extends Controller
 
        if(!is_null($id)){
        $asistenciau = new asistencia();
-       $asistenciau->id_evento=5;
+       $asistenciau->id_evento=6;
        $asistenciau->id_cliente = $id;
        $asistenciau->medio = 1;
        $asistenciau->save();
