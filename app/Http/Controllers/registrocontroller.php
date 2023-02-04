@@ -108,7 +108,7 @@ class registrocontroller extends Controller
         }
       
        
-        $url="http://sistema.avanceya.com/Evento/public/ValidarConstanciaQr/".$clave.$evento;
+        $url="http://sistema.avanceya.com/Evento/public/ValidarConstanciaQr/".$clave."/".$evento;
         $codiqr= QrCode::size(150)->generate($url);
         
         //$pdf = PDF::loadView('admin.constparti',compact('codiqr'));
@@ -149,7 +149,8 @@ class registrocontroller extends Controller
      */
     public function index()
     {
-        return view('index');
+        $catinsti = catInstitucion::All();
+        return view('index',compact('catinsti'));
     }
 
     /**

@@ -37,7 +37,7 @@
                                                  
                                                     <div style="padding-left:20px;">
                                                         <br>
-                                                        <p class="text-secondary"> <b>Avance Ya Consultores Empresariales,</b> confirma por este medio electrónico, que: <b>{!! $Busqueda->nombre_C !!} {!! $Busqueda->apep_C !!} {!! $Busqueda->apem_C !!}</b> asistió al <b>“5to. Congreso Nacional, Fiscal y Capital Humano 2022 Riviera Maya”.
+                                                        <p class="text-secondary"> <b>Avance Ya Consultores Empresariales,</b> confirma por este medio electrónico, que: <b>{!! $Busqueda->nombre_C !!} {!! $Busqueda->apep_C !!} {!! $Busqueda->apem_C !!}</b> asistió al <b>“6to. Congreso Nacional, Fiscal y Capital Humano 2022 Riviera Maya”.
 </b>
                                                     
                                                             <p class="text-secondary" style="text-align: left"><b>Lugar del Evento :</b> "Teatro de la Ciudad”. Circuito Chinchorro entre Avenida 115 y 120, a un costado de Walmart de la Cruz. Playa del Carmen. Quintana Roo.

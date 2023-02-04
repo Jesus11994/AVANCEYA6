@@ -149,10 +149,11 @@
                                                 <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                             </div>
                                                 <select id="txttipoIns" name="txttipoIns" value="{{ old('txttipoIns') }}" class="form-select" aria-label="Default select example" Class="form-control">
-                                                <option value="1" selected>Gobierno</option>
-                                                <option value="2">Iniciativa privada</option>
-                                                <option value="3">Catedratico</option>
-                                                <option value="4">Particular</option>
+                                                <option value="0" selected>Seleccione una Institución</option>
+                                                @foreach($catinsti as $item)
+                                                <option value="{{ $item->id_institu}}">{{$item->descripcion}}</option>
+                                                @endforeach
+                               
                                             </select>
                                         </div>
                                     </div>
