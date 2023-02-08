@@ -109,13 +109,21 @@ class registrocontroller extends Controller
       
        
         $url="http://sistema.avanceya.com/Evento/public/ValidarConstanciaQr/".$clave."/".$evento;
-        $codiqr= QrCode::size(150)->generate($url);
+        
         
         //$pdf = PDF::loadView('admin.constparti',compact('codiqr'));
 
            // $header = view("constancia.header");
+           
+           if($evento == 1){
+            $codiqr= QrCode::size(150)->generate($url);
             $body = view("constancia.body",compact('codiqr','Nombcompleto'));
-
+            
+           }else{
+            $codiqr= QrCode::size(150)->generate($url);
+            $body = view("constancia.bodydos",compact('codiqr','Nombcompleto'));
+            
+           }
 
             $mpdf = new \Mpdf\Mpdf([
                 'mode' => 'utf-8',
@@ -202,7 +210,7 @@ class registrocontroller extends Controller
          $frm_tel=$request->input("txtTelefono");
 
          $check_user = Musuario::where('login_C',$frm_usr)
-            ->orwhere("telefono_Cuno", $request->input("txtTelefono"))
+            ->where("telefono_Cuno", $request->input("txtTelefono"))
             ->first();
         
         
@@ -225,7 +233,7 @@ class registrocontroller extends Controller
             return view('recuperaru',compact('mensaje'));
 
         }else{
-            $mensaje = "Usuario no encontrado lo invitamos a registrarse";
+            $mensaje = "Usuario no encontrado correo o número telefonico no son identicos a los datos de registro";
             return view('recuperaru',compact('mensaje'));
         }
 
