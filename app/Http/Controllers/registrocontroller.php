@@ -60,7 +60,7 @@ class registrocontroller extends Controller
         
         $request->validate([
             
-            'txtfolio'=> 'required|max:10',
+            'txtfolio'=> 'required|max:11',
             'txtTelefono'=> 'required|max:10',
          ]);
         
