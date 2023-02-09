@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::get('/', 'registrocontroller@index')->name('index.inicio');
-Route::post('/guardar', 'registrocontroller@store')->name('index.guardar');
+Route::post('/', 'registrocontroller@store')->name('index.guardar');
 Route::get('/recuperar', 'registrocontroller@recupera')->name('index.recu');
 Route::post('/restort', 'registrocontroller@rec')->name('index.recuser');
 Route::get('/Obtenerconstancia', 'registrocontroller@mostrarcons')->name('index.mostrar');

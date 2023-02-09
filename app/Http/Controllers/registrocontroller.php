@@ -332,10 +332,9 @@ class registrocontroller extends Controller
 
     //Mandar Id por paso de parametros que nos devuelva el ultimo que se guardo para mandarlo a la vista
     $res_regis= $this->Reglistar($id_participante);
-
     
     //obtner la descripcion del nivel mediante paso de parametros para mandar el nivel a la vista
-    $Nivel_P= $this->ObtNivel($res_regis->nivel);
+    $Nivel_P= $this->ObtNivel($res_regis->id_tipoIns);
     if(!is_null($frm_folio)){
     //Guardar en la tabla folio Participante
     $Foliofisico = new folio_fisi_sistem();
@@ -358,8 +357,9 @@ class registrocontroller extends Controller
     }catch(Exception $e){
     DB::rollBack();
         $mensaje =$e->getMessage();
-
-        return view('index',compact('mensaje'));
+        $catinsti = catInstitucion::All();
+       // return  Redirect::route('index.inicio')->with('mensaje', $mensaje);
+        return view('index',compact('mensaje','catinsti'));
     }
      
        

@@ -150,7 +150,7 @@
                                             </div>
                                                 <select id="txttipoIns" name="txttipoIns" value="{{ old('txttipoIns') }}" class="form-select" aria-label="Default select example" Class="form-control">
                                                 <option value="0" selected>Seleccione una Institución</option>
-                                                @foreach($catinsti as $item)
+                                                @foreach($catinsti ?? [] as $item)
                                                 <option value="{{ $item->id_institu}}">{{$item->descripcion}}</option>
                                                 @endforeach
                                
