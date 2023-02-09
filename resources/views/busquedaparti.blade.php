@@ -227,6 +227,7 @@
 									<option  value="2">Iniciativa privada</option>
 									<option  value="3">Catedratico</option>
 									<option  value="4">Particular</option>
+                                    <option  value="5">Estudiante</option>
 								</select>
 							</div>
 							
@@ -366,7 +367,7 @@
                         
                     };
 
-                    axios.post('/buscarparti', arraydatos).then((response)=> {
+                    axios.post('http://sistema.avanceya.com/Evento/public/buscarparti', arraydatos).then((response)=> {
 						
 						if (response.data) {
                             

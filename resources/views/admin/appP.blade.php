@@ -57,6 +57,7 @@
 									<option  value="2">Iniciativa privada</option>
 									<option  value="3">Catedratico</option>
 									<option  value="4">Particular</option>
+									<option  value="5">Estudiante</option>
 								</select>
 							</div>
 							
