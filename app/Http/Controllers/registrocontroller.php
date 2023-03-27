@@ -71,6 +71,15 @@ class registrocontroller extends Controller
          ->where('Folio_parti',$frm_usr)
          ->first();
 
+         $verifi = Musuario::Where('telefono_Cuno',"$frm_tel")
+         ->where('Folio_parti',$frm_usr)
+         ->where('confirmflag',1)
+         ->first();
+       
+       if(is_null($verifi) ){
+             $mensaje="Usted se registro pero no participo en el evento disculpe las molestias en dado caso que usted haya participado y no pueda imprimir su constancia comuniquese a este correo : congresonacional@avanceya.com";
+            return view('validaconstan',compact('mensaje'));
+         }
        
 
          if(is_null($Busqueda) ){

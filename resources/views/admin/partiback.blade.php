@@ -39,6 +39,7 @@
 								<thead>
 									<tr>
 										<th style="width: 30px;">#</th>
+										<th scope="col">Folio</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Apellido Paterno</th>
                                         <th scope="col">Apellido Materno</th>
@@ -63,6 +64,7 @@
                                                 <a>	{{ $loop->iteration }}</a>
                                             </h2>
                                         </td>
+										<td>{{ $cat->Folio_parti }}</td>
                                         <td>{{ $cat->nombre_C }}</td>
                                         <td>{{ $cat->apep_C }}</td>
                                         <td>{{ $cat->apem_C }}</td>
@@ -106,11 +108,9 @@
 													@default
 													<a class="dropdown-item" href="#" data-toggle="modal" v-on:click="deleteAll({{ $cat->id_usuario }})"  data-target="#delete_approve"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													@endswitch
-													
-                                                    
-											 
+
 													<a class="dropdown-item" href="#" v-on:click="enviarconfirma({{ $cat->id_usuario }})" ><i class="fa fa-envelope"></i> Confirmar email</a>
-                                             
+													<a class="dropdown-item" href="{{route('back.consbuscar',$cat->id_usuario)}}"   target="_blank"><i class="fa fa-file-pdf-o"></i> Constancia</a>
 											
 												</div>
                                             </div>

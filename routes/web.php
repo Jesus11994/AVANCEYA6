@@ -43,7 +43,7 @@ Route::get('/listarvuejs', 'backendevento@listarvj')->name('back.listarvuej');
 
 Route::get('/Busqueda', 'backendevento@busquedaparti')->name('back.busca');
 //
-
+Route::get('/constanciaback/{id}', 'backendevento@constapdf')->name('back.consbuscar');
 
 Route::get('/regirige','backendevento@redireconfirm')->name('bacck.web');
 Route::post('/buscarparti', 'backendevento@busquedap')->name('back.buscar');

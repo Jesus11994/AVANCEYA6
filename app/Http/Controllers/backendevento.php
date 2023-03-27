@@ -535,7 +535,84 @@ class backendevento extends Controller
         return 'Email-Enviado';
     }
 
-  
+    public function constapdf($id)
+    {
+
+        $Busqueda=DB::table('participante')->where('id_usuario',$id)->first(); 
+        
+         
+         
+        $evento = $Busqueda->IdEvento;
+        $clave = $Busqueda->pass;
+        $nombre= mb_strtoupper($Busqueda->nombre_C, 'UTF-8');
+        
+        $Apellidop= mb_strtoupper($Busqueda->apep_C, 'UTF-8');
+        $ApellidoM= mb_strtoupper($Busqueda->apem_C, 'UTF-8');
+        $Nomb = $nombre." ".$Apellidop." ".$ApellidoM;
+      
+      
+        $contadornom =strlen($Nomb); 
+        if($contadornom >= 23){
+            /*
+            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+            $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+            $Nomcoms = str_replace($no_permitidas, $permitidas ,$Nomb);
+          
+            */
+            $Nombcompleto = $Nomb;
+        }else{
+            /*
+            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+            $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+            $Nomcoms = str_replace($no_permitidas, $permitidas ,$Nomb);
+            */
+            $Nombcompleto = $Nomb;
+
+        }
+      
+       
+        $url="http://sistema.avanceya.com/Evento/public/ValidarConstanciaQr/".$clave."/".$evento;
+        
+        
+        //$pdf = PDF::loadView('admin.constparti',compact('codiqr'));
+
+           // $header = view("constancia.header");
+           
+           if($evento == 1){
+            $codiqr= QrCode::size(150)->generate($url);
+            $body = view("constancia.body",compact('codiqr','Nombcompleto'));
+            
+           }else{
+            $codiqr= QrCode::size(150)->generate($url);
+            $body = view("constancia.bodydos",compact('codiqr','Nombcompleto'));
+            
+           }
+
+            $mpdf = new \Mpdf\Mpdf([
+                'mode' => 'utf-8',
+               
+                'margin_top' => 0,
+                'margin_left' => 0,
+                'margin_right'=>0,
+                'margin_bottom'=>0,
+                'format' => [201,260],
+                'orientation' => 'L'
+
+            ]);
+           // $img_base64_encoded = 'data:image/png;base64,' . base64_encode($codiqr);
+           // $img = '<img src="@' . preg_replace('#^data:image/[^;]+;base64,#', '', $img_base64_encoded) . '">';
+            
+          
+           $stylesheet = file_get_contents(public_path() .'/css/ensimado.css');
+           $mpdf->WriteHTML($stylesheet, 1);
+
+            $mpdf->SetTitle("".$Nombcompleto."".date("Y-m-d").date("H:i:s"));
+           // $mpdf->SetHTMLHeader($header);
+            $mpdf->WriteHTML($body);
+            //$mpdf->writeHTML($img, true, false, true, false, '');
+            $mpdf->Output();
+
+    }
 
 
 
